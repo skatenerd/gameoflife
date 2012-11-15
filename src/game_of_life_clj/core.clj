@@ -66,15 +66,10 @@
 
 
 (defn fun-times
-  ([first-world]
-    (fun-times first-world 5))
-  ([first-world iterations]
-    (loop [world first-world
-           remaining-iterations iterations]
-      (if (zero? remaining-iterations)
-        nil
-        (do
-          (println (world-string world (range 10) (range 10)))
-          (println)
-          (recur (update world) (dec remaining-iterations)))))))
-
+  ([world]
+    (fun-times world 4))
+  ([world iterations]
+   (let [worlds (iterate update world)]
+     (dotimes [n iterations]
+       (println (world-string (nth worlds n) (range 10) (range 10)))
+       (println)))))
