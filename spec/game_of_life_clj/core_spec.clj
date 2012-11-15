@@ -41,6 +41,13 @@
           expected-string (clojure.string/join "\n" expected-rows)]
     (should= expected-string (world-string #{[2 2]} (range 0 5) (range 0 5))))))
 
+(describe "interesting"
+  (it "blinker"
+    (should (interesting? #{[2 2] [2 3] [2 4]})))
+  (it "dies off"
+    (should-not (interesting? #{[2 2] [2 3]})))
+          )
+
 (describe "fun"
   (it "blinker"
     (fun-times #{[2 2] [2 3] [2 4]}))

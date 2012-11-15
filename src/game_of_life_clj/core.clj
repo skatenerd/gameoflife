@@ -52,6 +52,19 @@
                (row-string world y xs))]
     (clojure.string/join "\n" rows)))
 
+(defn interesting?
+  ([world]
+    (interesting? world 1000))
+  ([world iterations]
+    (cond
+      (zero? iterations)
+      true
+      (empty? world)
+      false
+      :else
+      (recur (update world) (dec iterations)))))
+
+
 (defn fun-times
   ([first-world]
     (fun-times first-world 5))
