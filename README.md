@@ -1,6 +1,6 @@
-# lambdalifter
+# gameoflife
 
-This will eventually be a solution to the programming contest for the 2012 ICFP.
+GAME OF LIFE
 
 ## Usage
 
