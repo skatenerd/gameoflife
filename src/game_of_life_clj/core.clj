@@ -1,4 +1,5 @@
-(ns game-of-life-clj.core)
+(ns game-of-life-clj.core
+  (:require [clojure.set]))
 
 (defn inclusive-neighborhood [element]
   (let [y (first element)
@@ -57,9 +58,11 @@
     (interesting? world 1000))
   ([world iterations]
    (let [worlds (iterate update world)
-         world-after-iterations (nth worlds iterations)]
-     (not (empty? world-after-iterations)))))
-
+         world-after-iterations (nth worlds iterations)
+         half-initial-count (/ (count world) 2)]
+     (and
+       (>= (count world-after-iterations) half-initial-count)
+       (> 0 (count world-after-iterations))))))
 
 (defn fun-times
   ([world]
@@ -69,3 +72,29 @@
      (dotimes [n iterations]
        (println (world-string (nth worlds n) (range 10) (range 10)))
        (println)))))
+
+(defn sample [n elements]
+  (loop [iters n
+         current #{}]
+    (if (zero? iters)
+      current
+      (recur (dec iters) (clojure.set/union current #{(rand-nth elements)})))))
+
+(defn points-on-grid [grid-length]
+  (for [y (range grid-length)
+        x (range grid-length)]
+    [y x]))
+
+(defn random-sample-from-grid [grid-length num-points]
+  (let [sampling-points (points-on-grid grid-length)]
+    (sample num-points sampling-points)))
+
+(defn print-interesting-patterns [max-cells]
+  (dotimes [n 100000]
+    (let [grid-length 20
+          points (random-sample-from-grid grid-length (rand-int max-cells))
+          interesting? (interesting? points)]
+      (if interesting?
+        (do
+          (println points)
+          (println (world-string points (range grid-length) (range grid-length))))))))

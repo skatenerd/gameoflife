@@ -49,10 +49,10 @@
           )
 
 (describe "fun"
-  (it "blinker"
-    (fun-times #{[2 2] [2 3] [2 4]}))
-  (it "toad"
-    (fun-times #{[4 2] [4 3] [4 4] [3 3] [3 4] [3 5]}))
-  (it "ship"
-    (fun-times #{[3 5] [4 5] [5 5] [5 4] [4 3]} 15))
+;  (it "blinker"
+;    (fun-times #{[2 2] [2 3] [2 4]}))
+;  (it "toad"
+;    (fun-times #{[4 2] [4 3] [4 4] [3 3] [3 4] [3 5]}))
+;  (it "ship"
+;    (fun-times #{[3 5] [4 5] [5 5] [5 4] [4 3]} 15))
       )
