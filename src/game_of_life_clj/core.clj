@@ -56,13 +56,9 @@
   ([world]
     (interesting? world 1000))
   ([world iterations]
-    (cond
-      (zero? iterations)
-      true
-      (empty? world)
-      false
-      :else
-      (recur (update world) (dec iterations)))))
+   (let [worlds (iterate update world)
+         world-after-iterations (nth worlds iterations)]
+     (not (empty? world-after-iterations)))))
 
 
 (defn fun-times
